@@ -6,26 +6,11 @@
 /*   By: rboukhra <rboukhra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 21:55:36 by rboukhra          #+#    #+#             */
-/*   Updated: 2025/02/11 23:12:45 by rboukhra         ###   ########.fr       */
+/*   Updated: 2025/02/12 00:41:50 by rboukhra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
-
-long	ft_atoi(const char *str)
-{
-	long	i;
-	long	nb;
-
-	i = 0;
-	nb = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		nb = (10 * nb) + (str[i] - 48);
-		i++;
-	}
-	return (nb);
-}
 
 int check_args(int ac, char **av)
 {
