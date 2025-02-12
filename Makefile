@@ -2,11 +2,11 @@ CLIENT             = client.c
 SERVER             = server.c
 CLIENT_PROC        = client
 SERVER_PROC        = server
-# FT_ATOI		       = ./bonus/ft_atoi_bonus.c
-# CLIENT_BONUS       = ./bonus/client_bonus.c
-# SERVER_BONUS       = ./bonus/server_bonus.c
-# CLIENT_PROC_BONUS  = client_bonus
-# SERVER_PROC_BONUS  = server_bonus
+FT_ATOI		       = ./bonus/util.c
+CLIENT_BONUS       = ./bonus/client_bonus.c
+SERVER_BONUS       = ./bonus/server_bonus.c
+CLIENT_PROC_BONUS  = client_bonus
+SERVER_PROC_BONUS  = server_bonus
 CC                 = cc
 RM                 = rm -rf
 CFLAGS             = -Wall -Wextra -Werror
@@ -26,15 +26,15 @@ ${SERVER_PROC}: ${SERVER} ${PATH_HEADER} minitalk.h
 	${CC} ${CFLAGS} ${PATH_PRINTF} ${SERVER} -o ${SERVER_PROC}
 
 
-# bonus: ${CLIENT_PROC_BONUS} ${SERVER_PROC_BONUS}
+bonus: ${CLIENT_PROC_BONUS} ${SERVER_PROC_BONUS}
 
-# ${CLIENT_PROC_BONUS}: ${CLIENT_BONUS} ${PATH_HEADER} ./bonus/minitalk_bonus.h 
-# 	make -C ${DPRINTF}
-# 	${CC} ${CFLAGS} ${PATH_PRINTF} ${CLIENT_BONUS} ${FT_ATOI} -o ${CLIENT_PROC_BONUS}
+${CLIENT_PROC_BONUS}: ${CLIENT_BONUS} ${PATH_HEADER} ./bonus/minitalk_bonus.h 
+	make -C ${DPRINTF}
+	${CC} ${CFLAGS} ${PATH_PRINTF} ${CLIENT_BONUS} ${FT_ATOI} -o ${CLIENT_PROC_BONUS}
 
-# ${SERVER_PROC_BONUS}: ${SERVER_BONUS} ${PATH_HEADER} ./bonus/minitalk_bonus.h 
-# 	make -C ${DPRINTF}
-# 	${CC} ${CFLAGS} ${PATH_PRINTF} ${SERVER_BONUS} -o ${SERVER_PROC_BONUS}
+${SERVER_PROC_BONUS}: ${SERVER_BONUS} ${PATH_HEADER} ./bonus/minitalk_bonus.h 
+	make -C ${DPRINTF}
+	${CC} ${CFLAGS} ${PATH_PRINTF} ${SERVER_BONUS} -o ${SERVER_PROC_BONUS}
 
 clean:
 	make clean -C ${DPRINTF}

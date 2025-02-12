@@ -6,57 +6,57 @@
 /*   By: rboukhra <rboukhra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 04:57:47 by rboukhra          #+#    #+#             */
-/*   Updated: 2025/02/11 05:55:51 by rboukhra         ###   ########.fr       */
+/*   Updated: 2025/02/12 03:14:22 by rboukhra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void    print_byte(int signal ,siginfo_t *sg, void *old)
+void	print_byte(int signal, siginfo_t *sg, void *old)
 {
-    static unsigned char    c = 0;
-    static int              count = 0;
-    static int              client = 0;
+	static unsigned char	c = 0;
+	static int				count = 0;
+	static int				client = 0;
 
-    (void)old;
-    if (client && client != sg->si_pid)
-    {
-        ft_printf("\n");
-        c = 0;
-        count = 0;
-    }
-    client = sg->si_pid;
-    if (signal == SIGUSR2)
-        c |= (1 << (7 - count));
-    if (++count == 8)
-    {
-        ft_printf("%c", c);
-        if (!c)
+	(void)old;
+	if (client && client != sg->si_pid)
+	{
+		ft_printf("\n");
+		c = 0;
+		count = 0;
+	}
+	client = sg->si_pid;
+	if (signal == SIGUSR2)
+		c |= (1 << (7 - count));
+	if (++count == 8)
+	{
+		ft_printf("%c", c);
+		if (!c)
 		{
 			usleep(250);
 			usleep(250);
 		}
-        c = 0;
-        count = 0;
-    }
+		c = 0;
+		count = 0;
+	}
 }
 
-int main (int ac, char **av)
+int	main(int ac, char **av)
 {
-    struct  sigaction sg;
-    int     pid;
+	struct sigaction	sg;
+	int					pid;
 
-    (void)av;
-    if (ac != 1)
-        return (ft_printf("Insuffisant ARGS!\n"), 1);
-    pid = getpid();
-    ft_printf("PID : \033[32m %d \033[0m\n", pid);
-    sg.sa_sigaction = print_byte;
-    sigemptyset(&sg.sa_mask);
-    sg.sa_flags = SA_SIGINFO;
-    sigaction(SIGUSR1, &sg, NULL);
-    sigaction(SIGUSR2, &sg, NULL);
-    while (1)
-        pause();
-    return (0);
+	(void)av;
+	if (ac != 1)
+		return (ft_printf("Insuffisant ARGS!\n"), 1);
+	pid = getpid();
+	ft_printf("PID : \033[32m %d \033[0m\n", pid);
+	sg.sa_sigaction = print_byte;
+	sigemptyset(&sg.sa_mask);
+	sg.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sg, NULL);
+	sigaction(SIGUSR2, &sg, NULL);
+	while (1)
+		pause();
+	return (0);
 }

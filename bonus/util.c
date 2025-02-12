@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rboukhra <rboukhra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 03:08:46 by rboukhra          #+#    #+#             */
-/*   Updated: 2025/02/12 03:17:27 by rboukhra         ###   ########.fr       */
+/*   Created: 2025/02/12 01:15:15 by rboukhra          #+#    #+#             */
+/*   Updated: 2025/02/12 01:21:56 by rboukhra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+#include "minitalk_bonus.h"
 
-# include <signal.h>
-# include "../ft_printf/ft_printf.h"
-# include <unistd.h>
+long	ft_atoi(const char *str)
+{
+	long	i;
+	long	nb;
 
-long	ft_atoi(const char *str);
-
-#endif
+	i = 0;
+	nb = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = (10 * nb) + (str[i] - 48);
+		i++;
+	}
+	return (nb);
+}

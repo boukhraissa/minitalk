@@ -6,7 +6,7 @@
 /*   By: rboukhra <rboukhra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 23:13:52 by rboukhra          #+#    #+#             */
-/*   Updated: 2025/02/11 23:52:18 by rboukhra         ###   ########.fr       */
+/*   Updated: 2025/02/12 03:18:22 by rboukhra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	process_char(int *bits, char *byte, int client_pid, int *pos)
 		}
 		if (*byte == '\0')
 		{
-			ft_printf("\n");
-			usleep(100);
+			write(1, "\n", 1);
 			kill(client_pid, SIGUSR2);
+			usleep(100);
 		}
 		*bits = 0;
 		*byte = 0;
@@ -71,8 +71,7 @@ void	handle_sig(int signum, siginfo_t *info, void *context)
 	}
 	if (signum == SIGUSR2)
 		byte |= (0b10000000 >> bits);
-	if (process_char(&bits, &byte, client_pid, &pos) == 1)
-		return ;
+	process_char(&bits, &byte, client_pid, &pos);
 }
 
 int	main(int ac, char **av)
