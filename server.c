@@ -6,7 +6,7 @@
 /*   By: rboukhra <rboukhra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 04:57:47 by rboukhra          #+#    #+#             */
-/*   Updated: 2025/02/12 03:14:22 by rboukhra         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:02:42 by rboukhra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 
 	(void)av;
 	if (ac != 1)
-		return (ft_printf("Insuffisant ARGS!\n"), 1);
+		return (ft_printf("\033[30m THE SERVER DOESN'T TAKE ANY ARGS!\033[0m\n"), 1);
 	pid = getpid();
 	ft_printf("PID : \033[32m %d \033[0m\n", pid);
 	sg.sa_sigaction = print_byte;
